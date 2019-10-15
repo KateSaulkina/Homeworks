@@ -28,12 +28,12 @@ int sign(int x){
 
 int getByte(int x, int n){
     int intShift = n << 3;
-    return (x & (0xFF << intShift)) >> intShift;
+    return ((x & (255 << intShift)) >> intShift) & 255;
 }
 
 int logicalShift(int x, int n){
-    int m = ~ ((~ (1 << n)) << (32 + (~ n + 1)));
-    return (x >> n) & m;
+    int m = ~ ((~ (1 << n)) << (32 - (!n & 1) + (~ n + 1)));
+    return (x >> n) & (m);
 }
 
 int addOK(int x, int y){
