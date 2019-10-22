@@ -7,7 +7,7 @@ int main()
     scanf("%s", &s);
     int i = 0;
     int n = 0;
-    while(s[i]){
+    while(s[i]) {
         n = n * 10;
         n = n + (s[i] - '0');
         i++;
