@@ -1,15 +1,15 @@
 
-size_t strlen1(char* s){
+size_t strlen(char* s){
     size_t i = 0;
-    while (s[i]){
+    while (s[i]) {
         i++;
     }
     return i;
 }
 
 void strcpy(char* dst, char* src){
-    int i = 0;
-    while (src[i]){
+    size_t i = 0;
+    while (src[i]) {
         dst[i] = src[i];
         i++;
     }
@@ -17,26 +17,26 @@ void strcpy(char* dst, char* src){
 }
 
 void strcat(char* dst, char* src){
-    int i = 0;
-    int j = 0;
-    while (dst[i]){
+    size_t i = 0;
+    size_t j = 0;
+    while (dst[i]) {
         i++;
     }
-    while (src[j]){
+    while (src[j]) {
         dst[i+j] = src[j];
         j++;
     }
-        dst[i+j] = 0;
+    dst[i+j] = 0;
 }
 
 int strcmp(char* s1, char* s2){
-    int i = 0;
+    size_t i = 0;
     int res = 0;
-    while (s1[i] || s2[i]){
-        if (s1[i] == s2[i]){
+    while (s1[i] || s2[i]) {
+        if (s1[i] == s2[i]) {
             i++;
         }
-        else{
+        else {
             res = (int)s1[i] - (int)s2[i];
             break;
         }
