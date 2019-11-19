@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define size 256
 
 int main()
 {
@@ -7,8 +8,8 @@ int main()
     scanf("%d", &N);
     int s;
     int order = 1;
-    int num1[256] = {0};
-    int reit[256] = {0};
+    int num1[size] = {0};
+    int reit[size] = {0};
     for (int i = 0; i < N; i++) {
         scanf("%d", &s);
         reit[s] += 1;
@@ -17,8 +18,8 @@ int main()
             ++order;
         }
     }
-    for (int i = 1; i <= 256; i++) {
-        for (int j = 0; j < 256; j++) {
+    for (int i = 1; i <= size; i++) {
+        for (int j = 0; j < size; j++) {
             if (num1[j] == i) {
                 printf("%d ", j);
             }
