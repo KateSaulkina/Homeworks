@@ -23,12 +23,10 @@ int main()
     if (data == NULL) {
         printf("ERROR");
     }
-    free(data);
     int* data1 = malloc(b * sizeof(int));
     if (data1 == NULL) {
         printf("ERROR");
     }
-    free(data1);
     printf("adress a:  %p\n", &a);
     printf("adress b:  %p\n", &b);
     printf("adress s:  %p\n", &s);
@@ -40,5 +38,7 @@ int main()
     printf("adress d:  %p\n", &d);
     printf("adress data:  %p\n", data);
     printf("adress data1:  %p\n", data1);
+    free(data);
+    free(data1);
     return 0;
 }
