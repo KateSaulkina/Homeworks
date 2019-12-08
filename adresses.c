@@ -5,13 +5,13 @@
 int a;
 int b = 100;
 char s = 's';
-void func(void){
+void func (void) {
     int x;
     int y;
     printf("adress x:  %p\n", &x);
     printf("adress y:  %p\n", &y);
 }
-void func2(void){
+void func2 (void) {
 }
 
 int main()
