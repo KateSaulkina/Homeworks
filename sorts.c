@@ -76,14 +76,6 @@ void random(int *arr, size_t k) {
 	}
 }
 
-void times(int *arr, size_t k, void (*f)(int*, size_t)) {
-    clock_t begin, end;
-    begin = clock();
-    f(arr, k);
-    end = clock();
-    printf("Size: %d\n Time: %f\n", k, (float)(end - begin) / CLOCKS_PER_SEC);
-}
-
 int main()
 {
     size_t number[] = {5, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
@@ -108,7 +100,6 @@ int main()
             printf("Size: %d\nTime: %f\n", number[j], (float)(end - begin) / CLOCKS_PER_SEC);
         }
 	}
-
-
+    free(el);
     return 0;
 }
