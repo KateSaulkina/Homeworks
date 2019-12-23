@@ -16,6 +16,7 @@ int main()
     int* out = malloc(len / 3 * 4 * sizeof(int));
     if (out == NULL) {
         printf("ERROR");
+        exit(1);
     }
     for (size_t i = 0; i < (len - 2); i += 3) {
         for (size_t j = 0; j < 3; j++) {
