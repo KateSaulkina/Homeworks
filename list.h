@@ -21,5 +21,7 @@ void deleteNode(struct List* list, struct Node* toDelete);
 void clearList(struct List* list);
 void printList(struct List* list);
 void printNode (struct List* list, size_t n);
+void createCycle(struct List *list, int from, int to);
+int checkCycle(struct List *list);
 
 #endif // LIST_H_INCLUDED
