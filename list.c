@@ -34,6 +34,7 @@ void insertToBegin(struct List *list, struct Node *node) {
 		list -> end = node;
 	}
 }
+
 void insertAfterEl(struct List *list, struct Node *after, struct Node *newNode) {
 	newNode -> next = after -> next;
 	after -> next = newNode;
@@ -92,4 +93,43 @@ void printNode (struct List *list, size_t n) {
 		struct Node *node = getN(list, n);
 		printf("%d\n", node -> data);
 
+}
+
+void createCycle(struct List *list, int from, int to) {
+    if ((list -> head -> next) == NULL) {
+        printf("Few elements\n");
+        return;
+    } else {
+        struct Node *node = list -> head;
+        struct Node *nodeFrom = NULL;
+        while (node -> next)
+        {
+            if (node -> data == from) {
+                nodeFrom = node;
+            }
+            if (node -> data == to && nodeFrom) {
+                node -> next = nodeFrom;
+                return;
+            }
+            node = node -> next;
+        }
+        if (node -> data == to) {
+            node -> next = nodeFrom;
+        }
+    }
+}
+
+int checkCycle(struct List *list) {
+    struct Node *slow = createNode(list -> head -> data);
+    struct Node *fast = createNode(list -> head -> data);
+    while(1) {
+        if ((slow -> next == NULL) || (fast -> next -> next == NULL)) {
+            return 0;
+        }
+        slow = slow -> next;
+        fast = fast -> next -> next;
+        if (slow == fast) {
+            return 1;
+        }
+    }
 }
