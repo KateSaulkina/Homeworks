@@ -3,37 +3,27 @@
 #include <string.h>
 #include <malloc.h>
 
-int main()
-{
+
+void code(char* s, size_t len, size_t* out) {
+    size_t mask = 63 << 18;
     int num = 0;
-    char* s = malloc(10000);
-    if (s == NULL) {
-        printf("ERROR");
-    }
-    int mask = 63 << 18;
-    scanf("%s", s);
-    unsigned int len = strlen(s);
-    int* out = malloc(len / 3 * 4 * sizeof(int));
-    if (out == NULL) {
-        printf("ERROR");
-        exit(1);
-    }
     for (size_t i = 0; i < (len - 2); i += 3) {
         for (size_t j = 0; j < 3; j++) {
             num = (num + (s[i + j] - '0' + 48)) << 8;
         }
         num = num >> 8;
         for (size_t l = 0; l < 4; l++) {
-            out[(i / 3 * 4) + l] = (num & mask) >> 18;
+            out[i / 3 * 4 + l] = (num & mask) >> 18;
             num = num << 6;
         }
         num = 0;
     }
-    free(s);
+}
 
+void decode(size_t* out, size_t lenO) {
     size_t i = 0;
     char c;
-    while (i < len / 3 * 4) {
+    while (i < lenO) {
         if (out[i] <= 25)
             c = 65 + out[i];
         else if (out[i] <= 51)
@@ -47,6 +37,29 @@ int main()
         printf("%c", c);
         i++;
     }
+}
+
+int main()
+{
+    char* s = (char*) malloc(100 * sizeof(char));
+    if (s == NULL) {
+        printf("ERROR");
+        exit(1);
+    }
+    scanf("%s", s);
+    size_t len = strlen(s);
+    if (len < 2) {
+        exit(1);
+    }
+    size_t lenO = len / 3 * 4;
+    size_t* out = (size_t*) malloc(lenO * sizeof(size_t));
+    if (out == NULL) {
+        printf("ERROR");
+        exit(1);
+    }
+    code(s, len, out);
+    free(s);
+    decode(out, lenO);
     free(out);
     return 0;
 }
