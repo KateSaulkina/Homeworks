@@ -10,8 +10,8 @@
 #define addAfter 5
 #define DeleteNode 6
 #define CleanList 7
-#define createCycle 8
-#define CheckCycle 9
+#define CheckCycle 8
+#define Exit 9
 
 int main()
 {
@@ -20,8 +20,9 @@ int main()
 	int choice = -1;
 	size_t value;
 	size_t after;
+	int ex = 1;
 
-	while (1) {
+	while (ex) {
 		printf("\nPrint List - 1\n");
 		printf("Create List - 2\n");
 		printf("Add Head - 3\n");
@@ -29,8 +30,8 @@ int main()
 		printf("Add After - 5\n");
 		printf("Delete Node - 6\n");
 		printf("Clean List - 7\n");
-		printf("Create Cycle - 8\n");
-		printf("Check Cycle - 9\n");
+		printf("Check Cycle - 8\n");
+		printf("Exit - 9\n");
 		printf("Enter your act: ");
 		printf("\n\n");
 		scanf("%d", &choice);
@@ -112,6 +113,11 @@ int main()
 					printf("List is empty\n");
 				}
 				break;
+
+            case Exit:
+                free(list);
+                ex = 0;
+                break;
 
 			default:
 				printf("No the option\n");
