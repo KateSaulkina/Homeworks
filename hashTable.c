@@ -64,7 +64,7 @@ void setData(struct HashTable* table, char* word, size_t val) {
 	return;
 }
 
-void freeTable(struct HashTable* table) {
+void deleteTable(struct HashTable* table) {
 	for (size_t i = 0; i < table -> size; i++) {
 		clearList(table -> entry[i]);
 	}
