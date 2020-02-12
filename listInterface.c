@@ -4,10 +4,10 @@
 #include "list.c"
 
 #define PrintList 1
-#define makeList 2
-#define addHead 3
-#define addEnd 4
-#define addAfter 5
+#define MakeList 2
+#define AddHead 3
+#define AddEnd 4
+#define AddAfter 5
 #define DeleteNode 6
 #define CleanList 7
 #define CheckCycle 8
@@ -36,7 +36,7 @@ int main()
 		printf("\n\n");
 		scanf("%d", &choice);
 		switch (choice) {
-            case PrintList:
+            		case PrintList:
 				if (list != NULL) {
 					printList(list);
 					printf("\n");
@@ -45,11 +45,11 @@ int main()
 					printf("List is empty\n");
 				}
 				break;
-			case makeList:
+			case MakeList:
 				list = createList();
 				printf("List was created\n");
 				break;
-			case addHead:
+			case AddHead:
 				if (list != NULL) {
 					printf("Your value: ");
 					scanf("%u", &value);
@@ -59,7 +59,7 @@ int main()
 					printf("List is empty\n");
 				}
 				break;
-			case addEnd:
+			case AddEnd:
 				if (list != NULL) {
 					printf("Your value: ");
 					scanf("%u", &value);
@@ -69,7 +69,7 @@ int main()
 					printf("List is empty\n");
 				}
 				break;
-			case addAfter:
+			case AddAfter:
 				if (list != NULL) {
 					printf("After element: ");
 					scanf("%u", &after);
@@ -101,12 +101,12 @@ int main()
 				}
 				break;
 
-            case CheckCycle:
-                if (list != NULL) {
+            		case CheckCycle:
+                		if (list != NULL) {
 					if (checkCycle(list)) {
-                        printf("You have cycle\n");
+                        			printf("You have cycle\n");
 					} else {
-                        printf("You have not cycle\n");
+                        			printf("You have not cycle\n");
 					}
 				}
 				else {
@@ -114,10 +114,10 @@ int main()
 				}
 				break;
 
-            case Exit:
-                free(list);
-                ex = 0;
-                break;
+            		case Exit:
+                		free(list);
+                		ex = 0;
+                		break;
 
 			default:
 				printf("No the option\n");
