@@ -45,8 +45,8 @@ int main() {
     }
 
     struct stat inf;
-	fstat(fInp, &inf);
-	size_t size = inf.st_size;
+    fstat(fInp, &inf);
+    size_t size = inf.st_size;
     char* input = mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fInp, 0);
     int inputLen = strlen(input);
     int maxI = 0, helper = 0;
