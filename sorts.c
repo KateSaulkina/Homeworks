@@ -45,7 +45,7 @@ void bubbleSort(int *arr, size_t k) {
     }
 }
 
-void quickSortL(int *arr, size_t l, size_t r){
+void quickSortL(int *arr, size_t l, size_t r) {
     if (l == r || l == (r - 1))
 		return;
 	size_t med = (r - l) / 2 + l;
@@ -80,10 +80,10 @@ int main()
 {
     size_t number[] = {5, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
     int *el = (int*)malloc(100000000 * sizeof(int));
-        if (el == 0) {
-            printf("ERROR");
-            exit(1);
-        }
+    if (el == NULL) {
+		printf("ERROR");
+		exit(1);
+	}
     void (*sorts[])(int *, size_t) = {&countingSort, &quickSort, &bubbleSort};
 	char *name[]= {"countingSort", "quickSort", "bubbleSort"};
 	clock_t begin;
