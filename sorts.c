@@ -46,8 +46,9 @@ void bubbleSort(int *arr, size_t k) {
 }
 
 void quickSortL(int *arr, size_t l, size_t r) {
-    if (l == r || l == (r - 1))
-		return;
+    if (l == r || l == (r - 1)) {
+        return;
+    }
 	size_t med = (r - l) / 2 + l;
 	swap(&arr[l], &arr[med]);
 	size_t k = l + 1, t = 0;
@@ -79,18 +80,20 @@ void random(int *arr, size_t k) {
 int main()
 {
     size_t number[] = {5, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
-    int *el = (int*)malloc(100000000 * sizeof(int));
+    size_t len = sizeof(number) / sizeof(size_t);
+    size_t maximum = number[len - 1];
+    int *el = (int*)malloc(maximum * sizeof(int));
     if (el == NULL) {
-		printf("ERROR");
-		exit(1);
-	}
+	printf("ERROR");
+	exit(1);
+    }
     void (*sorts[])(int *, size_t) = {&countingSort, &quickSort, &bubbleSort};
-	char *name[]= {"countingSort", "quickSort", "bubbleSort"};
-	clock_t begin;
-	clock_t end;
-	size_t kSorts = sizeof(sorts) / sizeof(sorts[0]);
-	size_t kNum = sizeof(number) / sizeof(number[0]);
-	for (size_t i = 0; i < kSorts; i++) {
+    char *name[] = {"countingSort", "quickSort", "bubbleSort"};
+    clock_t begin;
+    clock_t end;
+    size_t kSorts = sizeof(sorts) / sizeof(sorts[0]);
+    size_t kNum = sizeof(number) / sizeof(number[0]);
+    for (size_t i = 0; i < kSorts; i++) {
         printf("%s\n", name[i]);
         for (size_t j = 0; j < kNum; j++) {
             random(el, number[j]);
@@ -99,7 +102,7 @@ int main()
             end = clock();
             printf("Size: %d\nTime: %f\n", number[j], (float)(end - begin) / CLOCKS_PER_SEC);
         }
-	}
+    }
     free(el);
     return 0;
 }
