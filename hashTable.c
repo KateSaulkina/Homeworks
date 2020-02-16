@@ -93,5 +93,5 @@ void statistics(struct HashTable* table) {
 	printf("Number elements = %d\n", el);
 	printf("Min length of list = %d\n", lenMin);
 	printf("Max length of list = %d\n", lenMax);
-    printf("Average length of list = %d\n", lenS);
+	printf("Average length of list = %d\n", lenS);
 }
