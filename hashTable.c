@@ -11,7 +11,6 @@ struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
 		printf("ERROR");
 		exit(1);
 	}
-
 	table->size = k;
 	table->hashFunc = hashFunc;
 	table->entry = malloc(k * sizeof(struct List*));
