@@ -6,14 +6,14 @@
 #include "list_hash.h"
 
 struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
-	struct HashTable* table = malloc(sizeof(struct HashTable));
+	struct HashTable* table = (struct HashTable*) malloc(sizeof(struct HashTable));
 	if (table == NULL) {
 		printf("ERROR");
 		exit(1);
 	}
 	table->size = k;
 	table->hashFunc = hashFunc;
-	table->entry = malloc(k * sizeof(struct List*));
+	table->entry = (struct List**) malloc(k * sizeof(struct List*));
 	if (table->entry == NULL) {
 		printf("ERROR");
 		exit(1);
