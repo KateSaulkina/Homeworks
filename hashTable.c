@@ -12,16 +12,16 @@ struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
 		exit(1);
 	}
 
-	table -> size = k;
-	table -> hashFunc = hashFunc;
-	table -> entry = malloc(k * sizeof(struct List*));
-	if (table -> entry == NULL) {
+	table->size = k;
+	table->hashFunc = hashFunc;
+	table->entry = malloc(k * sizeof(struct List*));
+	if (table->entry == NULL) {
 		printf("ERROR");
 		exit(1);
 	}
 	for (size_t i = 0; i < k; i++) {
-		table -> entry[i] = createList();
-		if (table -> entry[i] == NULL) {
+		table->entry[i] = createList();
+		if (table->entry[i] == NULL) {
 			printf("ERROR");
 			exit(1);
 		}
@@ -30,53 +30,53 @@ struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
 }
 
 void addWord(struct HashTable* table, char *word, size_t hash) {
-	struct Node* node = findEl(table -> entry[hash], word);
+	struct Node* node = findEl(table->entry[hash], word);
 	if (node == NULL) {
-		insertToBegin(table -> entry[hash], createNode(0, word));
+		insertToBegin(table->entry[hash], createNode(0, word));
 	}
 	return;
 }
 
 void deleteWord(struct HashTable* table, char *word) {
-	size_t hash = table -> hashFunc(word);
-	struct Node* node = findEl(table -> entry[hash], word);
+	size_t hash = table->hashFunc(word);
+	struct Node* node = findEl(table->entry[hash], word);
 	if (node) {
-		deleteNode(table -> entry[hash], node);
+		deleteNode(table->entry[hash], node);
 	}
 	return;
 }
 
 size_t getData(struct HashTable* table, char *word) {
-	size_t hash = table -> hashFunc(word);
-	struct Node* node = findEl(table -> entry[hash], word);
+	size_t hash = table->hashFunc(word);
+	struct Node* node = findEl(table->entry[hash], word);
 	if (!node) {
 		return 0;
 	} else {
-		return node -> data;
+		return node->data;
 	}
 }
 
 void setData(struct HashTable* table, char* word, size_t val) {
-	size_t hash = table -> hashFunc(word);
+	size_t hash = table->hashFunc(word);
 	addWord(table, word, hash);
-	struct Node* node = findEl(table -> entry[hash], word);
-	node -> data = val;
+	struct Node* node = findEl(table->entry[hash], word);
+	node->data = val;
 	return;
 }
 
 void deleteTable(struct HashTable* table) {
-	for (size_t i = 0; i < table -> size; i++) {
-		clearList(table -> entry[i]);
+	for (size_t i = 0; i < table->size; i++) {
+		clearList(table->entry[i]);
 	}
-	free(table -> entry);
+	free(table->entry);
 	free(table);
 	return;
 }
 
 void statistics(struct HashTable* table) {
-	size_t el = 0, cell = 0, lenS = 0, lenMin = table -> size, lenMax = 0;
-	for (size_t i = 0; i < table -> size; i++) {
-		size_t len = (table -> entry[i]) -> length;
+	size_t el = 0, cell = 0, lenS = 0, lenMin = table->size, lenMax = 0;
+	for (size_t i = 0; i < table->size; i++) {
+		size_t len = (table->entry[i])->length;
 		if (len != 0) {
 			cell++;
 		}
