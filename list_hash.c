@@ -80,6 +80,7 @@ void clearList (struct List *list) {
 	list -> head = NULL;
 	list -> end = NULL;
 	list -> length = 0;
+	free(list);
 }
 
 void printList(struct List *list) {
