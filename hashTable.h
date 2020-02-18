@@ -9,7 +9,7 @@ struct HashTable {
 };
 
 struct HashTable *createHashTable(size_t (*hashFunc) (char* word), size_t k);
-void addWord(struct HashTable *table, char *word, size_t hash);
+void addWord(struct HashTable *table, char *word, int val, size_t hash);
 void deleteWord(struct HashTable *table, char *word);
 size_t getData(struct HashTable *table, char *word);
 void setData(struct HashTable*, char *word, size_t val);
