@@ -28,10 +28,10 @@ struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
 	return table;
 }
 
-void addWord(struct HashTable* table, char *word, size_t hash) {
+void addWord(struct HashTable* table, char *word, int val, size_t hash) {
 	struct Node* node = findEl(table->entry[hash], word);
 	if (node == NULL) {
-		insertToBegin(table->entry[hash], createNode(0, word));
+		insertToBegin(table->entry[hash], createNode(val, word));
 	}
 	return;
 }
@@ -57,9 +57,12 @@ size_t getData(struct HashTable* table, char *word) {
 
 void setData(struct HashTable* table, char* word, size_t val) {
 	size_t hash = table->hashFunc(word);
-	addWord(table, word, hash);
 	struct Node* node = findEl(table->entry[hash], word);
-	node->data = val;
+	if (node) {
+		node->data = val;
+	} else {
+		addWord(table, word, val, hash);
+	}
 	return;
 }
 
