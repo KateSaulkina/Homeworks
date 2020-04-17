@@ -2,7 +2,7 @@
 #include <memory.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hash_table.h"
+#include "hash_Table.h"
 #include "listHash.h"
 
 struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
@@ -29,10 +29,7 @@ struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
 }
 
 void addWord(struct HashTable* table, char *word, int val, size_t hash) {
-	struct Node* node = findEl(table->entry[hash], word);
-	if (node == NULL) {
-		insertToBegin(table->entry[hash], createNode(val, word));
-	}
+	insertToBegin(table->entry[hash], createNode(val, word));
 	return;
 }
 
