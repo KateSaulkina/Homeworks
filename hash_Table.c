@@ -5,7 +5,7 @@
 #include "hash_Table.h"
 #include "listHash.h"
 
-struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
+struct HashTable* createHashTable(size_t(*hashFunc) (char* word), size_t k) {
 	struct HashTable* table = (struct HashTable*) malloc(sizeof(struct HashTable));
 	if (table == NULL) {
 		printf("ERROR");
@@ -28,12 +28,12 @@ struct HashTable* createHashTable(size_t (*hashFunc) (char* word), size_t k) {
 	return table;
 }
 
-void addWord(struct HashTable* table, char *word, int val, size_t hash) {
+void addWord(struct HashTable* table, char* word, int val, size_t hash) {
 	insertToBegin(table->entry[hash], createNode(val, word));
 	return;
 }
 
-void deleteWord(struct HashTable* table, char *word) {
+void deleteWord(struct HashTable* table, char* word) {
 	size_t hash = table->hashFunc(word);
 	struct Node* node = findEl(table->entry[hash], word);
 	if (node) {
@@ -42,12 +42,22 @@ void deleteWord(struct HashTable* table, char *word) {
 	return;
 }
 
-size_t getData(struct HashTable* table, char *word) {
+int findWord(struct HashTable* table, char* word) {
+	size_t hash = table->hashFunc(word);
+	struct Node* node = findEl(table->entry[hash], word);
+	if (node) {
+        return node->data;
+	}
+	return 0;
+}
+
+size_t getData(struct HashTable* table, char* word) {
 	size_t hash = table->hashFunc(word);
 	struct Node* node = findEl(table->entry[hash], word);
 	if (!node) {
 		return 0;
-	} else {
+	}
+	else {
 		return node->data;
 	}
 }
@@ -57,7 +67,8 @@ void setData(struct HashTable* table, char* word, size_t val) {
 	struct Node* node = findEl(table->entry[hash], word);
 	if (node) {
 		node->data = val;
-	} else {
+	}
+	else {
 		addWord(table, word, val, hash);
 	}
 	return;
