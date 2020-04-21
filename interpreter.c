@@ -91,7 +91,7 @@ size_t hash(char* word) {
     hash += (hash << 3);
     hash ^= (hash >> 11);
     hash += (hash << 15);
-    return hash % 100000;
+    return hash % MAX_OPERATIONS;
 }
 
 void lable(FILE* file, struct Interpreter* inerpreter) {
