@@ -224,15 +224,11 @@ void execute(struct Interpreter* interpreter) {
         case cmp:
             if (stack->data[stack->size - 2] > stack->data[stack->size - 1]) {
                 stack->data[stack->size] = -1;
-                stack->size++;
-                return;
-            }
-            if (stack->data[stack->size - 2] < stack->data[stack->size - 1]) {
+            } else if (stack->data[stack->size - 2] < stack->data[stack->size - 1]) {
                 stack->data[stack->size] = 1;
-                stack->size++;
-                return;
+            } else {
+                stack->data[stack->size] = 0;
             }
-            stack->data[stack->size] = 0;
             stack->size++;
             break;
         case jmp:
