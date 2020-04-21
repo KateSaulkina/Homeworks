@@ -256,7 +256,8 @@ void execute(struct Interpreter* interpreter) {
 
 int main()
 {
-    struct Interpreter* interp;
+    struct Interpreter interpreter;
+    struct Interpreter* interp = &interpreter;
     interp->state.stack.size = 0;
     interp->state.memory = (int32_t*) malloc(MEMORY_SIZE * sizeof(int32_t));
     interp->prog.operations = (struct CMD*) malloc(MAX_OPERATIONS * sizeof(struct CMD));
@@ -267,6 +268,12 @@ int main()
         exit(1);
     }
     lable(file, interp);
+    fclose(file);
+    file = fopen("test.txt", "rt");
+    if (!file) {
+        printf("ERROR file opening");
+        exit(1);
+    }
     byteCode(file, interp);
     fclose(file);
     execute(interp);
