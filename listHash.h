@@ -1,5 +1,5 @@
-#ifndef LIST_HASH_H_INCLUDED
-#define LIST_HASH_H_INCLUDED
+#ifndef LISTHASH_H_INCLUDED
+#define LISTHASH_H_INCLUDED
 #define MaxLen 30
 
 struct Node {
@@ -22,9 +22,9 @@ struct Node* getN(struct List* list, size_t n);
 void deleteNode(struct List* list, struct Node* toDelete);
 void clearList(struct List* list);
 void printList(struct List* list);
-void printNode (struct List* list, size_t n);
-void createCycle(struct List *list, int from, int to);
-int checkCycle(struct List *list);
-struct Node* findEl(struct List* list, char *word);
+void printNode(struct List* list, size_t n);
+void createCycle(struct List* list, int from, int to);
+int checkCycle(struct List* list);
+struct Node* findEl(struct List* list, char* word);
 
-#endif // LIST_HASH_H_INCLUDED
+#endif // LISTHASH_H_INCLUDED
