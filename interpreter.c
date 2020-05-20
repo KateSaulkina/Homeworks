@@ -256,6 +256,10 @@ int main()
     struct Interpreter* interp = &interpreter;
     interp->state.stack.size = 0;
     interp->state.memory = (int32_t*) malloc(MEMORY_SIZE * sizeof(int32_t));
+    if (interp->state.memory == NULL) {
+		printf("ERROR");
+		exit(1);
+	}
     interp->prog.operations = (struct CMD*) malloc(MAX_OPERATIONS * sizeof(struct CMD));
     interp->prog.lables = createHashTable(hash, MAX_OPERATIONS);
     FILE* file = fopen("test.txt", "rt");
