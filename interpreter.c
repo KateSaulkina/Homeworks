@@ -140,48 +140,50 @@ void byteCode(FILE* file, struct Interpreter* interpreter) {
             t++;
         }
         str[t] = 0;
-        if (strToCmd(str) == NO_CMD) {
-            continue;
-        }
-        if (strToCmd(str) == ld) {
+        size_t cmd = strToCmd(str);
+        switch (cmd) {
+        case ld:
             char* ar = strstr(str, "ld") + 3;
             int32_t argument = atoi(ar);
             interpreter->prog.operations[k].arg = argument;
             interpreter->prog.operations[k].opcode = ld;
-        }
-        if (strToCmd(str) == st) {
+            break;
+        case st:
             char* ar = strstr(str, "st") + 3;
             int32_t argument = atoi(ar);
             interpreter->prog.operations[k].arg = argument;
             interpreter->prog.operations[k].opcode = st;
-        }
-        if (strToCmd(str) == ldc) {
+            break;
+        case ldc:
             char* ar = strstr(str, "ldc") + 4;
             int32_t argument = atoi(ar);
             interpreter->prog.operations[k].arg = argument;
             interpreter->prog.operations[k].opcode = ldc;
-        }
-        if (strToCmd(str) == add) {
+            break;
+        case add:
             interpreter->prog.operations[k].opcode = add;
-        }
-        if (strToCmd(str) == sub) {
+            break;
+        case sub:
             interpreter->prog.operations[k].opcode = sub;
-        }
-        if (strToCmd(str) == cmp) {
+            break;
+        case cmp:
             interpreter->prog.operations[k].opcode = cmp;
-        }
-        if (strToCmd(str) == jmp) {
+            break;
+        case jmp:
             char *ar = strstr(str, "jmp") + 4;
             interpreter->prog.operations[k].arg = findWord(interpreter->prog.lables, ar);
             interpreter->prog.operations[k].opcode = jmp;
-        }
-        if (strToCmd(str) == br) {
+            break;
+        case br:
             char *ar = strstr(str, "br") + 3;
             interpreter->prog.operations[k].arg = findWord(interpreter->prog.lables, ar);
             interpreter->prog.operations[k].opcode = br;
-        }
-        if (strToCmd(str) == ret) {
+            break;
+        case ret:
             interpreter->prog.operations[k].opcode = ret;
+            break;
+        default:
+            continue;
         }
         k++;
     }
