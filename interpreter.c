@@ -267,6 +267,10 @@ int main()
 		printf("ERROR");
 		exit(1);
     interp->prog.lables = createHashTable(hash, MAX_OPERATIONS);
+    if (interp->prog.lables == NULL) {
+        printf("ERROR creating hash table");
+        exit(1);
+    }
     FILE* file = fopen("test.txt", "rt");
     if (!file) {
         printf("ERROR file opening");
