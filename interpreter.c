@@ -263,6 +263,9 @@ int main()
 		exit(1);
 	}
     interp->prog.operations = (struct CMD*) malloc(MAX_OPERATIONS * sizeof(struct CMD));
+    if (interp->prog.operations == NULL) {
+		printf("ERROR");
+		exit(1);
     interp->prog.lables = createHashTable(hash, MAX_OPERATIONS);
     FILE* file = fopen("test.txt", "rt");
     if (!file) {
